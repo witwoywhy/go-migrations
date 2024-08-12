@@ -2,16 +2,18 @@ package route
 
 import (
 	"migrate/httpserv/handler"
-	"migrate/services/migration"
+	"migrate/services/data"
+	"migrate/services/schema"
 	"net/http"
 
 	"github.com/witwoywhy/go-cores/gins"
 )
 
 func BindMigrationRoute(app gins.GinApps) {
-	svc := migration.New()
+	data := data.New()
+	schema := schema.New()
 
-	hdl := handler.NewMigrationHandler(svc)
+	hdl := handler.NewMigrationHandler(data, schema)
 	app.Register(
 		http.MethodPost,
 		"/:action",

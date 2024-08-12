@@ -4,9 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang-migrate/migrate/v4/database"
 	"github.com/golang-migrate/migrate/v4/database/mysql"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/spf13/viper"
 	"github.com/witwoywhy/go-cores/dbs"
 )
@@ -29,7 +31,7 @@ func initMySql() {
 		panic(fmt.Errorf("failed to load config db.mysql: %v", err))
 	}
 
-	db, err := sql.Open("mysql", config.ToDsn())
+	db, err := sql.Open(dbs.Mysql, config.ToDsn())
 	if err != nil {
 		panic(fmt.Errorf("failed to open mysql db: %v", err))
 	}

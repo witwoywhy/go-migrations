@@ -1,5 +1,5 @@
 app:
-  name: migration
+  name: migration-users
   port: 8080
 
 db:
