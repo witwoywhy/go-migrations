@@ -1,8 +1,8 @@
 package main
 
 import (
-	"migrate/httpserv"
 	"migrate/infrastructure"
+	"sync"
 )
 
 func init() {
@@ -10,8 +10,14 @@ func init() {
 
 }
 
+func combineRun() {
+	var wg sync.WaitGroup
+	wg.Add(1)
+}
+
 func main() {
 	infrastructure.InitLog()
 	infrastructure.InitDb()
-	httpserv.Run()
+	// httpserv.Run()
+	// cmd.Run()
 }
